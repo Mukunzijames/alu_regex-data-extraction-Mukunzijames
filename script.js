@@ -2,7 +2,11 @@ const patterns = {
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     url: /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/,
     phone: /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/,
-    creditCard: /^(\d{4}[\s-]?){4}$/
+    creditCard: /^(\d{4}[\s-]?){4}$/,
+    time: /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
+    htmlTag: /^<\/?[a-z][a-z0-9]*(?:\s+[a-z0-9-]+(?:=(?:".*?"|'.*?'|[\^'">\s]+))?)*\s*\/?>$/i,
+    hashtag: /^#[a-zA-Z0-9_]+$/,
+    currency: /^\$\d{1,3}(,\d{3})*(\.\d{2})?$/
     
 };
 
@@ -213,7 +217,66 @@ function testPatterns() {
         'abcd efgh ijkl mnop' 
     ];
     testPattern('Credit Card', patterns.creditCard, creditCardTests);
+
+    console.log('\nTesting Time Pattern:');
+    const timeTests = [
+        '14:30',
+        '2:30 PM',
+        'invalid time',
+        '1430',
+        '12:00 AM',
+        '12:00 PM',
+        '12:00',
+        '12:00 AM',
+        '12:00 PM',
+        '12:00',
+    ]
+    testPattern('Time', patterns.time, timeTests);
+
+    console.log('\nTesting HTML Tag Pattern:');
+    const htmlTagTests = [
+        '<div>',
+        '<img src="image.jpg">',
+        '<div>',
+        'invalid tag',
+        '<div>',
+        '<div />',
+        '<div class="container">',
+        '<div class="container">',
+        '<div class="container">',
+    ]
+    testPattern('HTML Tag', patterns.htmlTag, htmlTagTests);
+
+    console.log('\nTesting Hashtag Pattern:');
+    const hashtagTests = [
+        '#example',
+        'invalid hashtag',
+        '#example',
+        'invalid hashtag',
+        '#example',
+        'invalid hashtag',
+        '#example',
+        'invalid hashtag',
+        '#example',
+        'invalid hashtag',
+    ]
+    testPattern('Hashtag', patterns.hashtag, hashtagTests);
+
+    console.log('\nTesting Currency Pattern:');
+    const currencyTests = [
+        '$19.99',
+        '$1,234.56',
+        'invalid currency',
+        '$19.99',
+        '$1,234.56',
+        'invalid currency',
+        '$19.99',
+        '$1,234.56',
+        'invalid currency',
+    ]
+    testPattern('Currency', patterns.currency, currencyTests);
 }
+
 
 function testPattern(name, pattern, tests) {
     tests.forEach(test => {
