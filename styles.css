@@ -1,0 +1,282 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --primary-color: #4CAF50;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    background: linear-gradient(45deg, #6b78ff, #ff6b6b);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.progress-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    max-width: 100%;
+    width: 1000px;
+    margin: 20px;
+    padding-top: 20px;
+}
+
+.progress-container::before {
+    content: '';
+    background-color: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    top: 40px;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    z-index: 1;
+}
+
+.progress {
+    background-color: #ffffff;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    height: 2px;
+    width: 0%;
+    z-index: 1;
+    transition: 0.4s ease;
+}
+
+.circle {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    transition: .4s ease;
+    cursor: pointer;
+    z-index: 2;
+    backdrop-filter: blur(5px);
+    position: relative;
+    font-size: 14px;
+}
+
+.circle.active {
+    border-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.step-label {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+    transition: 0.4s ease;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.step-label.active {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.step {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.error {
+    color: #ff6b6b;
+    font-size: 16px;
+    margin-top: 12px;
+    padding: 8px;
+    background: rgba(255, 99, 99, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.validator-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.validator-container {
+    max-width: 700px;
+    width: 85%;
+    margin: 2rem auto;
+    padding: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.validator-card {
+    display: none;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 35px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.validator-card:hover {
+    transform: none;
+}
+
+.validator-card h3 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.validator-card input {
+    width: 85%;
+    padding: 14px 18px;
+    margin: 15px auto;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+.validator-card input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+.validator-card input:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.valid {
+    border-color: #28a745 !important;
+    background: rgba(40, 167, 69, 0.1) !important;
+}
+
+.invalid {
+    border-color: #dc3545 !important;
+    background: rgba(220, 53, 69, 0.1) !important;
+}
+
+.warning {
+    border-color: #ffd700;
+    background-color: #fffbe6;
+}
+
+.circle:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.step:hover .step-label {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.validator-card[style*="display: block"] {
+    animation: fadeIn 0.5s ease forwards;
+}

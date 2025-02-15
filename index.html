@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Steps</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress" id="progress"></div>
+        <div class="step">
+            <div class="circle active" onclick="setActive(1)">1</div>
+            <span class="step-label active">Email</span>
+        </div>
+        <div class="step">
+            <div class="circle" onclick="setActive(2)">2</div>
+            <span class="step-label">URLs</span>
+        </div>
+        <div class="step">
+            <div class="circle" onclick="setActive(3)">3</div>
+            <span class="step-label">Phone</span>
+        </div>
+        <div class="step">
+            <div class="circle" onclick="setActive(4)">4</div>
+            <span class="step-label">Cards</span>
+        </div>
+        <div class="step">
+            <div class="circle" onclick="setActive(5)">5</div>
+            <span class="step-label">Time</span>
+        </div>
+        <div class="step">
+            <div class="circle" onclick="setActive(6)">6</div>
+            <span class="step-label">HTML</span>
+        </div>
+        <div class="step">
+            <div class="circle" onclick="setActive(7)">7</div>
+            <span class="step-label">Tags</span>
+        </div>
+        <div class="step">
+            <div class="circle" onclick="setActive(8)">8</div>
+            <span class="step-label">Currency</span>
+        </div>
+    </div>
+
+    <div class="validator-container">
+        <div class="validator-card" id="emailValidator">
+            <h3>Email Validation</h3>
+            <input type="text" id="email" placeholder="Enter email address" onkeyup="validateEmail()">
+            <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="validator-card" id="urlValidator">
+            <h3>URL Validation</h3>
+            <input type="text" id="url" placeholder="Enter URL" onkeyup="validateURL()">
+            <div class="error" id="urlError"></div>
+        </div>
+
+        <div class="validator-card" id="phoneValidator">
+            <h3>Phone Number Validation</h3>
+            <input type="text" id="phone" placeholder="Enter phone number" onkeyup="validatePhone()">
+            <div class="error" id="phoneError"></div>
+        </div>
+
+        <div class="validator-card" id="creditCardValidator">
+            <h3>Credit Card Validation</h3>
+            <input type="text" id="creditCard" placeholder="Enter credit card number" onkeyup="validateCreditCard()">
+            <div class="error" id="creditCardError"></div>
+        </div>
+
+        <div class="validator-card" id="timeValidator">
+            <h3>Time Validation</h3>
+            <input type="text" id="time" placeholder="Enter time (24h or 12h format)" onkeyup="validateTime()">
+            <div class="error" id="timeError"></div>
+        </div>
+
+        <div class="validator-card" id="htmlTagValidator">
+            <h3>HTML Tag Validation</h3>
+            <input type="text" id="htmlTag" placeholder="Enter HTML tag" onkeyup="validateHTMLTag()">
+            <div class="error" id="htmlTagError"></div>
+        </div>
+
+        <div class="validator-card" id="hashtagValidator">
+            <h3>Hashtag Validation</h3>
+            <input type="text" id="hashtag" placeholder="Enter hashtag" onkeyup="validateHashtag()">
+            <div class="error" id="hashtagError"></div>
+        </div>
+
+        <div class="validator-card" id="currencyValidator">
+            <h3>Currency Validation</h3>
+            <input type="text" id="currency" placeholder="Enter amount (e.g., $19.99)" onkeyup="validateCurrency()">
+            <div class="error" id="currencyError"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
